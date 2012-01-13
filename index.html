@@ -4,18 +4,6 @@
   <head>
     <title>Todos</title>
     <link href="vendor/css/todos.css" media="all" rel="stylesheet" type="text/css"/>
-
-    <script src="vendor/js/json2.js"></script>
-    <script src="vendor/js/jquery-1.7.1.js"></script>
-    <script src="vendor/js/underscore-1.2.4.js"></script>
-
-    <script src="src/js/todos.js"></script>
-
-    <!-- specs -->
-    <link href="vendor/css/jasmine.css" media="all" rel="stylesheet" type="text/css"/>
-    <script src="vendor/js/jasmine.js"></script>
-    <script src="vendor/js/jasmine-html.js"></script>
-    <script src="spec/todos-spec.js"></script>
   </head>
 
   <body>
@@ -44,7 +32,7 @@
       <div class="todo <%= done ? 'done' : '' %>">
         <div class="display">
           <input class="check" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
-          <div class="todo-text"></div>
+          <div class="todo-text"><%= stuff %></div>
           <span class="todo-destroy"></span>
         </div>
         <div class="edit">
@@ -69,6 +57,19 @@
         </span>
       <% } %>
     </script>
+
+    <script src="vendor/js/json2.js"></script>
+    <script src="vendor/js/jquery-1.7.1.js"></script>
+    <script src="vendor/js/underscore-1.2.4.js"></script>
+    <script src="vendor/js/backbone.js"></script>
+
+    <script src="src/js/todos.js"></script>
+
+    <!-- specs -->
+    <link href="vendor/css/jasmine.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="vendor/js/jasmine.js"></script>
+    <script src="vendor/js/jasmine-html.js"></script>
+    <script src="spec/todos-spec.js"></script>
 
   </body>
 
