@@ -23,7 +23,7 @@ AddTodoView = Backbone.View.extend({
     if (e.keyCode == 13) {
       var todoText = $(this.el).val();
       Todos.add({stuff: todoText});
-      $(this.el).val("")
+      $(this.el).val("");
     }
   }
 });
@@ -34,9 +34,17 @@ TodoListView = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this);
     this.collection.bind("add", this.addOneTodo);
+	this.collection.bind("remove", this.removeOneTodo);
   },
   addOneTodo: function(todo) {
     $(this.el).append(new TodoView({model: todo}).render());
+  },
+  removeOneTodo: function(todo) {
+	var thisel = $(this.el);
+	thisel.html("");
+	this.collection.each(function(todo) {
+		thisel.append(new TodoView({model: todo}).render());
+	});
   }
 });
 
@@ -55,7 +63,8 @@ TodoView = Backbone.View.extend({
     $(this.el).toggleClass("done", done);
   },
   events: {
-    "click .check": "markDone"
+    "click .check": "markDone",
+	"click .todo-destroy": "deleteTodo"
   },
   markDone: function() {
     if (this.model.get("done")) {
@@ -63,6 +72,9 @@ TodoView = Backbone.View.extend({
     } else {
       this.model.set({done:true});
     }
+  },
+  deleteTodo: function() {
+	Todos.remove(this.model);
   }
 });
 
